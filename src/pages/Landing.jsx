@@ -1,45 +1,39 @@
-import React from 'react';
-import { Navigate, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Heart } from 'lucide-react';
-import { useAuth } from '../context/AuthContext';
+import React from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Heart } from "lucide-react";
 
-const HEARTS = ['💕', '❤️', '💗', '💖', '💝', '💘', '💞', '🌹'];
+const HEARTS = ["💕", "❤️", "💗", "💖", "💝", "💘", "💞", "🌹"];
 
 const STATS = [
-  { num: '50K+', label: 'Active Users' },
-  { num: '12K+', label: 'Matches Made' },
-  { num: '4.9★', label: 'Rating' },
+  { num: "50K+", label: "Active Users" },
+  { num: "12K+", label: "Matches Made" },
+  { num: "4.9★", label: "Rating" },
 ];
 
 const FEATURES = [
   {
-    icon: '💕',
-    title: 'Smart Matching',
-    desc: 'Our algorithm finds compatible matches based on your interests and preferences.',
+    icon: "💕",
+    title: "Smart Matching",
+    desc: "Our algorithm finds compatible matches based on your interests and preferences.",
   },
   {
-    icon: '✅',
-    title: 'Real Profiles',
-    desc: 'Every profile is verified. Connect with genuine people looking for real connections.',
+    icon: "✅",
+    title: "Real Profiles",
+    desc: "Every profile is verified. Connect with genuine people looking for real connections.",
   },
   {
-    icon: '⚡',
-    title: 'Instant Connect',
-    desc: 'Match and start chatting instantly. No delays, no waiting — just connections.',
+    icon: "⚡",
+    title: "Instant Connect",
+    desc: "Match and start chatting instantly. No delays, no waiting — just connections.",
   },
 ];
 
 export default function Landing() {
-  const { user } = useAuth();
-  if (user) return <Navigate to="/feed" replace />;
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-rose-50 overflow-hidden">
-
       {/* ── Hero ── */}
       <section className="relative min-h-screen flex items-center justify-center px-4">
-
         {/* Floating blobs */}
         <div className="absolute top-20 left-10 w-72 h-72 bg-pink-300 rounded-full blur-3xl opacity-30 animate-pulse" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-rose-300 rounded-full blur-3xl opacity-30 animate-pulse" />
@@ -52,12 +46,12 @@ export default function Landing() {
               key={i}
               className="absolute pointer-events-none select-none"
               style={{
-                left: (i * 12 + 4) + '%',
-                top: (i % 3 === 0 ? 15 : i % 3 === 1 ? 55 : 78) + '%',
-                animationDelay: (i * 0.35) + 's',
-                animationDuration: (2 + i * 0.25) + 's',
+                left: i * 12 + 4 + "%",
+                top: (i % 3 === 0 ? 15 : i % 3 === 1 ? 55 : 78) + "%",
+                animationDelay: i * 0.35 + "s",
+                animationDuration: 2 + i * 0.25 + "s",
                 opacity: 0.35 + (i % 3) * 0.15,
-                fontSize: (16 + (i % 4) * 8) + 'px',
+                fontSize: 16 + (i % 4) * 8 + "px",
               }}
             >
               {h}
@@ -67,7 +61,6 @@ export default function Landing() {
 
         {/* Main content */}
         <div className="relative z-10 text-center max-w-3xl mx-auto">
-
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -92,7 +85,8 @@ export default function Landing() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-xl text-gray-500 mb-10 max-w-xl mx-auto"
           >
-            Connect with real people, build meaningful relationships, and find your perfect match with Socialize.
+            Connect with real people, build meaningful relationships, and find
+            your perfect match with Socialize.
           </motion.p>
 
           <motion.div
@@ -125,7 +119,9 @@ export default function Landing() {
             {STATS.map(function (s) {
               return (
                 <div key={s.label} className="text-center">
-                  <div className="text-2xl font-black text-gradient">{s.num}</div>
+                  <div className="text-2xl font-black text-gradient">
+                    {s.num}
+                  </div>
                   <div className="text-sm text-gray-400">{s.label}</div>
                 </div>
               );
@@ -148,8 +144,12 @@ export default function Landing() {
                 className="glass rounded-3xl p-8 text-center"
               >
                 <div className="text-4xl mb-4">{f.icon}</div>
-                <h3 className="text-xl font-bold text-gray-800 mb-2">{f.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{f.desc}</p>
+                <h3 className="text-xl font-bold text-gray-800 mb-2">
+                  {f.title}
+                </h3>
+                <p className="text-gray-500 text-sm leading-relaxed">
+                  {f.desc}
+                </p>
               </motion.div>
             );
           })}
