@@ -3,6 +3,10 @@
     {
       "source": "/api/(.*)",
       "destination": "https://socialize-backend-blue.vercel.app/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
