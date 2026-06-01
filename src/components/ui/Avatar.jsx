@@ -1,6 +1,10 @@
 import React from "react";
 
-const FALLBACK = "https://i.pravatar.cc/300";
+const FALLBACK =
+  "data:image/svg+xml;charset=UTF-8," +
+  encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Default avatar"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f9a8d4"/><stop offset="100%" stop-color="#fb7185"/></linearGradient></defs><rect width="256" height="256" rx="128" fill="url(#g)"/><circle cx="128" cy="106" r="44" fill="#fff" opacity="0.95"/><path d="M56 208c14-36 44-56 72-56s58 20 72 56" fill="#fff" opacity="0.95"/></svg>',
+  );
 const IMAGE_CACHE_PREFIX = "socialize:image-cache:";
 
 const sizeMap = {
