@@ -28,7 +28,11 @@ export default function ProfileView({ onEdit }) {
         {/* Avatar + identity */}
         <div className="flex flex-col items-center mb-6">
           <div className="ring-4 ring-pink-300 ring-offset-4 rounded-full shadow-2xl shadow-pink-200 mb-4">
-            <Avatar src={user.photoUrl || user.profilePhoto} alt={user.FirstName} size="xl" />
+            <Avatar
+              src={user.photoUrl || user.profilePhoto}
+              alt={user.FirstName}
+              size="xl"
+            />
           </div>
 
           <h2 className="text-3xl font-black text-gradient mb-1">

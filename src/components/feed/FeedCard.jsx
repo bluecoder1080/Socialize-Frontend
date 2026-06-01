@@ -1,23 +1,35 @@
-import React from 'react';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
-import { resolveImageSrc } from '../ui/Avatar';
+import React from "react";
+import { motion, useMotionValue, useTransform } from "framer-motion";
+import { resolveImageSrc } from "../ui/Avatar";
 
-const FALLBACK = 'https://i.pravatar.cc/400';
+const FALLBACK = "https://i.pravatar.cc/400";
 
 function getGenderEmoji(gender) {
-  if (!gender) return '';
+  if (!gender) return "";
   switch (gender.toLowerCase()) {
-    case 'male':   return '♂️';
-    case 'female': return '♀️';
-    default:       return '⚧️';
+    case "male":
+      return "♂️";
+    case "female":
+      return "♀️";
+    default:
+      return "⚧️";
   }
 }
 
 export function FeedCard({ user, onLike, onPass }) {
-  const x            = useMotionValue(0);
-  const rotate       = useTransform(x, [-200, 200], [-25, 25]);
-  const likeOpacity  = useTransform(x, [30, 130], [0, 1]);
-  const nopeOpacity  = useTransform(x, [-130, -30], [1, 0]);
+  const x = useMotionValue(0);
+  const rotate = useTransform(x, [-200, 200], [-25, 25]);
+  const likeOpacity = useTransform(x, [30, 130], [0, 1]);
+  const nopeOpacity = useTransform(x, [-130, -30], [1, 0]);
+  const firstName = user?.FirstName || user?.firstName || "User";
+  const lastName = user?.LastName || user?.lastName || "";
+  const gender = user?.Gender || user?.gender;
+  const about = user?.About || user?.about;
+  const skills = Array.isArray(user?.Skills)
+    ? user.Skills
+    : Array.isArray(user?.skills)
+      ? user.skills
+      : [];
 
   const handleDragEnd = (_, info) => {
     if (info.offset.x > 100) {
@@ -56,8 +68,10 @@ export function FeedCard({ user, onLike, onPass }) {
       <div className="relative h-full rounded-3xl overflow-hidden shadow-2xl shadow-pink-200">
         <img
           src={resolveImageSrc(user.profilePhoto || user.photoUrl || FALLBACK)}
-          alt={user.firstName || 'User'}
-          onError={(e) => { e.target.src = FALLBACK; }}
+          alt={firstName}
+          onError={(e) => {
+            e.target.src = FALLBACK;
+          }}
           className="absolute inset-0 w-full h-full object-cover"
         />
 
@@ -67,24 +81,24 @@ export function FeedCard({ user, onLike, onPass }) {
         {/* Info */}
         <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
           <h2 className="text-3xl font-black leading-tight">
-            {user.firstName} {user.lastName}
+            {firstName} {lastName}
           </h2>
 
-          {user.gender && (
+          {gender && (
             <p className="text-sm text-gray-200 mt-0.5 mb-2">
-              {getGenderEmoji(user.gender)} {user.gender}
+              {getGenderEmoji(gender)} {gender}
             </p>
           )}
 
-          {user.about && (
+          {about && (
             <p className="text-sm text-gray-200 mb-3 line-clamp-2 leading-relaxed">
-              {user.about}
+              {about}
             </p>
           )}
 
-          {user.skills && user.skills.length > 0 && (
+          {skills.length > 0 && (
             <div className="flex flex-wrap gap-2">
-              {user.skills.slice(0, 5).map((skill, i) => (
+              {skills.slice(0, 5).map((skill, i) => (
                 <span
                   key={i}
                   className="px-3 py-1 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full text-xs font-medium"

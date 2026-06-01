@@ -40,7 +40,9 @@ export default function Feed() {
               style={{ transform: "scale(0.93)" }}
             >
               <img
-                src={resolveImageSrc(next.photoUrl || next.profilePhoto || FALLBACK)}
+                src={resolveImageSrc(
+                  next.photoUrl || next.profilePhoto || FALLBACK,
+                )}
                 alt={next.FirstName}
                 className="w-full h-full object-cover"
               />

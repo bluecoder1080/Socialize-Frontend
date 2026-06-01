@@ -1,20 +1,20 @@
-import React from 'react';
+import React from "react";
 
-const FALLBACK = 'https://i.pravatar.cc/300';
-const IMAGE_CACHE_PREFIX = 'socialize:image-cache:';
+const FALLBACK = "https://i.pravatar.cc/300";
+const IMAGE_CACHE_PREFIX = "socialize:image-cache:";
 
 const sizeMap = {
-  sm: 'w-8 h-8',
-  md: 'w-12 h-12',
-  lg: 'w-20 h-20',
-  xl: 'w-32 h-32',
+  sm: "w-8 h-8",
+  md: "w-12 h-12",
+  lg: "w-20 h-20",
+  xl: "w-32 h-32",
 };
 
 function readCachedVersion(src) {
   try {
-    return window.localStorage.getItem(IMAGE_CACHE_PREFIX + src) || '';
+    return window.localStorage.getItem(IMAGE_CACHE_PREFIX + src) || "";
   } catch {
-    return '';
+    return "";
   }
 }
 
@@ -36,23 +36,23 @@ export function resolveImageSrc(src) {
 
   try {
     const url = new URL(src, window.location.origin);
-    url.searchParams.set('v', cachedVersion);
+    url.searchParams.set("v", cachedVersion);
     return url.toString();
   } catch {
-    const separator = src.includes('?') ? '&' : '?';
+    const separator = src.includes("?") ? "&" : "?";
     return `${src}${separator}v=${encodeURIComponent(cachedVersion)}`;
   }
 }
 
 export function Avatar({
   src,
-  name = 'User',
-  size = 'md',
+  name = "User",
+  size = "md",
   online = false,
-  className = '',
+  className = "",
 }) {
-  const imgCls = 'object-cover rounded-full ' + (sizeMap[size] || sizeMap.md);
-  const outerCls = 'relative inline-block' + (className ? ' ' + className : '');
+  const imgCls = "object-cover rounded-full " + (sizeMap[size] || sizeMap.md);
+  const outerCls = "relative inline-block" + (className ? " " + className : "");
 
   return (
     <div className={outerCls}>
@@ -60,7 +60,9 @@ export function Avatar({
         <img
           src={resolveImageSrc(src)}
           alt={name}
-          onError={(e) => { e.target.src = FALLBACK; }}
+          onError={(e) => {
+            e.target.src = FALLBACK;
+          }}
           className={imgCls}
         />
       </div>
