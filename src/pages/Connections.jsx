@@ -58,7 +58,7 @@ export default function Connections() {
                 >
                   <div className="mx-auto mb-3 flex justify-center">
                     <Avatar
-                      src={conn.photoUrl}
+                      src={conn.photoUrl || conn.profilePhoto}
                       alt={conn.FirstName}
                       size="lg"
                       online={true}

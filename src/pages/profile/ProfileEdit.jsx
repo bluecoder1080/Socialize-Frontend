@@ -13,7 +13,7 @@ export default function ProfileEdit({ onCancel, onSaved }) {
     FirstName: (user && user.FirstName) || "",
     LastName: (user && user.LastName) || "",
     Gender: (user && user.Gender) || "",
-    photoUrl: (user && user.photoUrl) || "",
+    photoUrl: (user && (user.photoUrl || user.profilePhoto)) || "",
     About: (user && user.About) || "",
     Skills: user && Array.isArray(user.Skills) ? user.Skills.join(", ") : "",
   });

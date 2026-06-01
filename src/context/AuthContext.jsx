@@ -1,7 +1,22 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import api from '../api/axios';
+import { rememberFreshImage } from '../components/ui/Avatar';
 
 const AuthContext = createContext(null);
+
+function normalizeUser(user) {
+  if (!user) return null;
+
+  const photoUrl = user.photoUrl || user.profilePhoto || user.imageUrl || user.avatarUrl || '';
+
+  return {
+    ...user,
+    photoUrl,
+    profilePhoto: photoUrl,
+    imageUrl: photoUrl,
+    avatarUrl: photoUrl,
+  };
+}
 
 export function useAuth() {
   const ctx = useContext(AuthContext);
@@ -16,7 +31,7 @@ export function AuthProvider({ children }) {
   const checkAuth = async () => {
     try {
       const res = await api.get('/profile');
-      setUser(res.data);
+      setUser(normalizeUser(res.data));
     } catch {
       setUser(null);
     } finally {
@@ -39,7 +54,17 @@ export function AuthProvider({ children }) {
   };
 
   const updateUser = (patch) => {
-    setUser((prev) => ({ ...prev, ...patch }));
+    setUser((prev) => {
+      const next = normalizeUser({ ...prev, ...patch });
+      const previousPhoto = prev && (prev.photoUrl || prev.profilePhoto || prev.imageUrl || prev.avatarUrl);
+      const nextPhoto = next && (next.photoUrl || next.profilePhoto || next.imageUrl || next.avatarUrl);
+
+      if (previousPhoto && nextPhoto && previousPhoto !== nextPhoto) {
+        rememberFreshImage(nextPhoto);
+      }
+
+      return next;
+    });
   };
 
   useEffect(() => {

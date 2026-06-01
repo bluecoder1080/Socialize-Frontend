@@ -62,7 +62,7 @@ export default function Requests() {
                   className="glass rounded-2xl p-4 flex items-center gap-4"
                 >
                   <Avatar
-                    src={sender.photoUrl}
+                    src={sender.photoUrl || sender.profilePhoto}
                     alt={sender.FirstName}
                     size="md"
                   />

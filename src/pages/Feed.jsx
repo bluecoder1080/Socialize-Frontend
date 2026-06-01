@@ -5,6 +5,7 @@ import { useFeed } from "../hooks/useFeed";
 import { FeedCard } from "../components/feed/FeedCard";
 import { FeedActionButtons } from "../components/feed/FeedActionButtons";
 import { FullPageSpinner } from "../components/ui/Spinner";
+import { resolveImageSrc } from "../components/ui/Avatar";
 
 const FALLBACK = "https://i.pravatar.cc/400";
 
@@ -39,7 +40,7 @@ export default function Feed() {
               style={{ transform: "scale(0.93)" }}
             >
               <img
-                src={next.photoUrl || FALLBACK}
+                src={resolveImageSrc(next.photoUrl || next.profilePhoto || FALLBACK)}
                 alt={next.FirstName}
                 className="w-full h-full object-cover"
               />

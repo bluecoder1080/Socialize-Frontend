@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { resolveImageSrc } from '../ui/Avatar';
 
 const FALLBACK = 'https://i.pravatar.cc/400';
 
@@ -54,7 +55,7 @@ export function FeedCard({ user, onLike, onPass }) {
       {/* Card body */}
       <div className="relative h-full rounded-3xl overflow-hidden shadow-2xl shadow-pink-200">
         <img
-          src={user.profilePhoto || FALLBACK}
+          src={resolveImageSrc(user.profilePhoto || user.photoUrl || FALLBACK)}
           alt={user.firstName || 'User'}
           onError={(e) => { e.target.src = FALLBACK; }}
           className="absolute inset-0 w-full h-full object-cover"
