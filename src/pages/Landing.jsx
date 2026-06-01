@@ -1,31 +1,31 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Heart } from "lucide-react";
+import { Heart, ShieldCheck, Sparkles, Users } from "lucide-react";
 
 const HEARTS = ["💕", "❤️", "💗", "💖", "💝", "💘", "💞", "🌹"];
 
 const STATS = [
-  { num: "50K+", label: "Active Users" },
-  { num: "12K+", label: "Matches Made" },
-  { num: "4.9★", label: "Rating" },
+  { num: "1.5K+", label: "Profiles Browsed Daily" },
+  { num: "320+", label: "Daily Conversations" },
+  { num: "98%", label: "Profiles Completed" },
 ];
 
 const FEATURES = [
   {
-    icon: "💕",
+    icon: Sparkles,
     title: "Smart Matching",
-    desc: "Our algorithm finds compatible matches based on your interests and preferences.",
+    desc: "Browse people who actually fit your interests instead of random noise.",
   },
   {
-    icon: "✅",
+    icon: ShieldCheck,
     title: "Real Profiles",
-    desc: "Every profile is verified. Connect with genuine people looking for real connections.",
+    desc: "Profiles are reviewed so you can focus on real conversations, not obvious fakes.",
   },
   {
-    icon: "⚡",
+    icon: Users,
     title: "Instant Connect",
-    desc: "Match and start chatting instantly. No delays, no waiting — just connections.",
+    desc: "When there is interest, you can move from swipe to connection without extra friction.",
   },
 ];
 
@@ -111,6 +111,40 @@ export default function Landing() {
           </motion.div>
 
           <motion.div
+            initial={{ opacity: 0, scale: 0.96, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.38 }}
+            className="mx-auto mb-10 max-w-xl"
+          >
+            <div className="glass rounded-3xl p-5 shadow-2xl shadow-pink-100 border-pink-100/70">
+              <div className="flex items-center justify-between gap-4">
+                <div className="text-left">
+                  <p className="text-xs uppercase tracking-[0.35em] text-pink-400 font-bold mb-2">
+                    This week
+                  </p>
+                  <h3 className="text-lg md:text-xl font-black text-gray-800 mb-1">
+                    A calmer way to meet people
+                  </h3>
+                  <p className="text-sm text-gray-500">
+                    Less scrolling, more meaningful connections.
+                  </p>
+                </div>
+                <motion.div
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="w-14 h-14 rounded-2xl bg-gradient-to-br from-pink-500 to-rose-500 flex items-center justify-center shadow-lg shadow-pink-200 shrink-0"
+                >
+                  <Heart className="w-7 h-7 text-white fill-current" />
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.5 }}
@@ -134,6 +168,7 @@ export default function Landing() {
       <section className="py-24 px-4">
         <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-8">
           {FEATURES.map(function (f, i) {
+            const Icon = f.icon;
             return (
               <motion.div
                 key={f.title}
@@ -143,7 +178,14 @@ export default function Landing() {
                 transition={{ duration: 0.5, delay: i * 0.15 }}
                 className="glass rounded-3xl p-8 text-center"
               >
-                <div className="text-4xl mb-4">{f.icon}</div>
+                <motion.div
+                  initial={{ scale: 0.9 }}
+                  whileInView={{ scale: 1 }}
+                  transition={{ duration: 0.4, delay: i * 0.12 }}
+                  className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-pink-100 to-rose-100 text-pink-500 flex items-center justify-center shadow-sm"
+                >
+                  <Icon className="w-7 h-7" />
+                </motion.div>
                 <h3 className="text-xl font-bold text-gray-800 mb-2">
                   {f.title}
                 </h3>
@@ -158,10 +200,16 @@ export default function Landing() {
 
       {/* ── CTA Banner ── */}
       <section className="py-16 px-4">
-        <div className="max-w-4xl mx-auto bg-gradient-to-r from-pink-500 to-rose-500 rounded-3xl p-12 text-center text-white">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="max-w-4xl mx-auto bg-gradient-to-r from-pink-500 to-rose-500 rounded-3xl p-12 text-center text-white shadow-2xl shadow-pink-200"
+        >
           <h2 className="text-4xl font-black mb-4">Ready to Find Love? 💕</h2>
           <p className="text-pink-100 mb-8 text-lg">
-            Join thousands of happy couples who found their match on Socialize.
+            Join people who want a better kind of connection, not a louder feed.
           </p>
           <Link
             to="/signup"
@@ -170,12 +218,28 @@ export default function Landing() {
             <Heart className="w-5 h-5 fill-current" />
             Start Your Journey
           </Link>
-        </div>
+        </motion.div>
       </section>
 
       {/* ── Footer ── */}
-      <footer className="py-8 text-center text-gray-400 text-sm">
-        Made with 💕 by Socialize Team
+      <footer className="border-t border-pink-100/80 bg-white/70 backdrop-blur-sm">
+        <div className="max-w-6xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500">
+          <p>
+            Socialize · built for real conversations, not endless scrolling.
+          </p>
+          <div className="flex items-center gap-5">
+            <Link
+              to="/signup"
+              className="hover:text-pink-500 transition-colors"
+            >
+              Sign up
+            </Link>
+            <Link to="/login" className="hover:text-pink-500 transition-colors">
+              Log in
+            </Link>
+            <span>© 2026 Socialize</span>
+          </div>
+        </div>
       </footer>
     </div>
   );
