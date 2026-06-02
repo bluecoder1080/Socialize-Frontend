@@ -58,7 +58,9 @@ export default function Login() {
       await login(form.email, form.password);
       navigate("/feed");
     } catch (err) {
-      toast.error(err?.response?.data?.message || "Login failed. Please try again.");
+      toast.error(
+        err?.response?.data?.message || "Login failed. Please try again.",
+      );
     } finally {
       setLoading(false);
     }

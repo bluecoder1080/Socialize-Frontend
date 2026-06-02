@@ -14,7 +14,7 @@
   }
 
   html {
-    font-family: 'Fraunces', serif;
+    font-family: "Fraunces", serif;
     -webkit-font-smoothing: antialiased;
     background: #0f0f0d;
     color: #f5f0e8;
@@ -32,7 +32,7 @@
   h5,
   h6,
   .font-mono-ui {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: "JetBrains Mono", monospace;
     letter-spacing: -0.03em;
   }
 
@@ -92,7 +92,10 @@
     color: #0f0f0d;
     border: 1px solid #e8ff3b;
     border-radius: 4px;
-    transition: transform 160ms ease, opacity 160ms ease, background 160ms ease;
+    transition:
+      transform 160ms ease,
+      opacity 160ms ease,
+      background 160ms ease;
   }
 
   .button-accent:hover {
@@ -104,7 +107,10 @@
     color: #f5f0e8;
     border: 1px solid #2a2a24;
     border-radius: 4px;
-    transition: border-color 160ms ease, color 160ms ease, background 160ms ease;
+    transition:
+      border-color 160ms ease,
+      color 160ms ease,
+      background 160ms ease;
   }
 
   .button-ghost:hover {
@@ -133,6 +139,6 @@
   }
 
   .mono-copy {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: "JetBrains Mono", monospace;
   }
 }

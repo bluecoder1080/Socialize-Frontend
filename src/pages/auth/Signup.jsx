@@ -44,7 +44,12 @@ export default function Signup() {
   const { user, signup } = useAuth();
   const navigate = useNavigate();
   const [slide, setSlide] = useState(0);
-  const [form, setForm] = useState({ FirstName: "", LastName: "", Email: "", Password: "" });
+  const [form, setForm] = useState({
+    FirstName: "",
+    LastName: "",
+    Email: "",
+    Password: "",
+  });
   const [showPassword, setShowPassword] = useState(false);
   const [touched, setTouched] = useState({});
   const [loading, setLoading] = useState(false);
@@ -81,7 +86,12 @@ export default function Signup() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    setTouched({ FirstName: true, LastName: true, Email: true, Password: true });
+    setTouched({
+      FirstName: true,
+      LastName: true,
+      Email: true,
+      Password: true,
+    });
     if (Object.keys(errors).length > 0) return;
 
     setLoading(true);
@@ -91,7 +101,9 @@ export default function Signup() {
       navigate("/login");
     } catch (err) {
       const msg = err?.response?.data || err?.message || "Sign up failed";
-      toast.error(typeof msg === "string" ? msg.slice(0, 100) : "Sign up failed");
+      toast.error(
+        typeof msg === "string" ? msg.slice(0, 100) : "Sign up failed",
+      );
     } finally {
       setLoading(false);
     }
@@ -104,7 +116,9 @@ export default function Signup() {
       <aside className="border-b border-ui bg-[#1a1a17] px-6 py-10 lg:min-h-[calc(100vh-4rem)] lg:border-b-0 lg:border-r lg:px-10 lg:py-14">
         <div className="flex h-full flex-col justify-between">
           <div>
-            <span className="badge-square text-[#e8ff3b]">[ editorial notes ]</span>
+            <span className="badge-square text-[#e8ff3b]">
+              [ editorial notes ]
+            </span>
             <h1 className="mt-6 max-w-md font-mono-display text-4xl uppercase leading-[0.9] tracking-[-0.06em] md:text-5xl">
               Join the room where devs actually meet to build.
             </h1>
@@ -123,20 +137,24 @@ export default function Signup() {
                 / testimonial
               </p>
               <div className="mt-4 space-y-2 text-sm leading-7 text-[#d8d3c6]">
-                {current.quote.split(" ").reduce((lines, word, index) => {
-                  const line = Math.floor(index / 6);
-                  lines[line] = (lines[line] || "") + (lines[line] ? " " : "") + word;
-                  return lines;
-                }, []).map((line, index) => (
-                  <motion.p
-                    key={line + index}
-                    initial={{ opacity: 0, x: -8 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.08 }}
-                  >
-                    {line}
-                  </motion.p>
-                ))}
+                {current.quote
+                  .split(" ")
+                  .reduce((lines, word, index) => {
+                    const line = Math.floor(index / 6);
+                    lines[line] =
+                      (lines[line] || "") + (lines[line] ? " " : "") + word;
+                    return lines;
+                  }, [])
+                  .map((line, index) => (
+                    <motion.p
+                      key={line + index}
+                      initial={{ opacity: 0, x: -8 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.08 }}
+                    >
+                      {line}
+                    </motion.p>
+                  ))}
               </div>
               <p className="mt-5 font-mono-ui text-[10px] uppercase tracking-[0.28em] text-[#6b6b5e]">
                 {current.author}
@@ -145,8 +163,8 @@ export default function Signup() {
           </AnimatePresence>
 
           <p className="mt-8 max-w-sm text-sm leading-7 text-[#6b6b5e]">
-            No loud gradients. No bubbly cards. Just a sharp place to find people
-            who want to ship.
+            No loud gradients. No bubbly cards. Just a sharp place to find
+            people who want to ship.
           </p>
         </div>
       </aside>
@@ -167,7 +185,10 @@ export default function Signup() {
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid gap-6 sm:grid-cols-2">
-              <FloatingField label="First name" error={touched.FirstName && errors.FirstName}>
+              <FloatingField
+                label="First name"
+                error={touched.FirstName && errors.FirstName}
+              >
                 <input
                   className="peer field-line"
                   name="FirstName"
@@ -179,7 +200,10 @@ export default function Signup() {
                 />
               </FloatingField>
 
-              <FloatingField label="Last name" error={touched.LastName && errors.LastName}>
+              <FloatingField
+                label="Last name"
+                error={touched.LastName && errors.LastName}
+              >
                 <input
                   className="peer field-line"
                   name="LastName"
@@ -205,7 +229,10 @@ export default function Signup() {
               />
             </FloatingField>
 
-            <FloatingField label="Password" error={touched.Password && errors.Password}>
+            <FloatingField
+              label="Password"
+              error={touched.Password && errors.Password}
+            >
               <input
                 className="peer field-line pr-16"
                 name="Password"

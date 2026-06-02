@@ -21,9 +21,7 @@ export default function PasswordChange() {
       toast.success("Password changed.");
       setForm({ currentPassword: "", newPassword: "" });
     } catch (err) {
-      toast.error(
-        err?.response?.data?.message || "Failed to change password.",
-      );
+      toast.error(err?.response?.data?.message || "Failed to change password.");
     } finally {
       setLoading(false);
     }

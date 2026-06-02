@@ -102,7 +102,7 @@ export default function Landing() {
                 transition={{ duration: 0.5, delay: 0.14 }}
                 className="surface-soft overflow-hidden p-5 text-[11px] leading-6 text-[#e8ff3b] font-mono-display"
               >
-{`┌───────────────────────┐
+                {`┌───────────────────────┐
 │  { stack }  { vibe }  │
 │  { ship }   { repeat }│
 │                       │
@@ -167,7 +167,9 @@ export default function Landing() {
         >
           {STATS.map((stat) => (
             <div key={stat.label} className="surface p-5">
-              <div className="font-mono-display text-2xl text-[#e8ff3b]">{stat.num}</div>
+              <div className="font-mono-display text-2xl text-[#e8ff3b]">
+                {stat.num}
+              </div>
               <div className="mt-2 text-sm text-[#6b6b5e]">{stat.label}</div>
             </div>
           ))}

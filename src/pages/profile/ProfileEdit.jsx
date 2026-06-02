@@ -43,9 +43,7 @@ export default function ProfileEdit({ onCancel, onSaved }) {
       toast.success("Profile updated.");
       onSaved();
     } catch (err) {
-      toast.error(
-        err?.response?.data?.message || "Failed to update profile.",
-      );
+      toast.error(err?.response?.data?.message || "Failed to update profile.");
     } finally {
       setLoading(false);
     }
@@ -137,7 +135,12 @@ export default function ProfileEdit({ onCancel, onSaved }) {
           </div>
 
           <div className="flex gap-3 pt-2">
-            <Button type="button" variant="ghost" onClick={onCancel} className="flex-1">
+            <Button
+              type="button"
+              variant="ghost"
+              onClick={onCancel}
+              className="flex-1"
+            >
               Cancel
             </Button>
             <Button type="submit" loading={loading} className="flex-1">

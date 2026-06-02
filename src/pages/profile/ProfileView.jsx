@@ -59,7 +59,10 @@ export default function ProfileView({ onEdit }) {
             <p className="ui-kicker mb-2 text-[#6b6b5e]">Skills</p>
             <div className="flex flex-wrap gap-2">
               {skills.map((skill) => (
-                <span key={skill} className="badge-square bg-[#1a1a17] text-[#e8ff3b]">
+                <span
+                  key={skill}
+                  className="badge-square bg-[#1a1a17] text-[#e8ff3b]"
+                >
                   {skill}
                 </span>
               ))}
