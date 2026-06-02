@@ -14,29 +14,29 @@ export default function Feed() {
   const top = users[0];
   const next = users[1];
 
-  if (loading) return <FullPageSpinner text="Finding amazing people... 💕" />;
+  if (loading) return <FullPageSpinner text="locating builders..." />;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-rose-50 pb-12">
-      <div className="max-w-md mx-auto px-4 pt-8">
-        {/* Header */}
-        <div className="text-center mb-6">
-          <h1 className="text-3xl font-black text-gradient mb-1">
-            Discover People
+    <div className="min-h-screen bg-ui pb-12 text-[#f5f0e8]">
+      <div className="mx-auto max-w-md px-4 pt-8">
+        <div className="mb-8">
+          <p className="ui-kicker text-[#6b6b5e]">[ discover ]</p>
+          <h1 className="mt-3 font-mono-display text-3xl uppercase tracking-[-0.04em]">
+            People who want to ship.
           </h1>
-          <p className="text-gray-400 text-sm">
+          <p className="mt-2 text-sm text-[#6b6b5e]">
             {users.length > 0
-              ? users.length + " people left to explore"
+              ? `${users.length} profiles left in the stack`
               : "No more profiles"}
           </p>
         </div>
 
         {/* Card stack */}
-        <div className="relative h-[520px] mb-8">
+        <div className="relative mb-8 h-[520px]">
           {/* Back card preview */}
           {next && (
             <div
-              className="absolute inset-4 top-6 rounded-3xl overflow-hidden opacity-60"
+              className="absolute inset-4 top-6 overflow-hidden rounded-[4px] border border-ui opacity-60"
               style={{ transform: "scale(0.93)" }}
             >
               <img
@@ -80,20 +80,20 @@ export default function Feed() {
                 key="empty"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="absolute inset-0 glass rounded-3xl flex flex-col items-center justify-center gap-4 text-center px-6"
+                className="absolute inset-0 surface flex flex-col items-center justify-center gap-4 px-6 text-center"
               >
-                <span className="text-7xl">🌟</span>
-                <h3 className="text-xl font-bold text-gray-700">
-                  All caught up!
+                <span className="text-5xl text-[#e8ff3b]">&gt;_</span>
+                <h3 className="font-mono-display text-xl uppercase tracking-[-0.04em]">
+                  All caught up.
                 </h3>
-                <p className="text-gray-400 text-sm">
-                  Check back later for more amazing people
+                <p className="text-sm text-[#6b6b5e]">
+                  Check back later for more builders.
                 </p>
                 <Link
                   to="/connections"
-                  className="mt-2 bg-gradient-to-r from-pink-500 to-rose-500 text-white px-6 py-3 rounded-xl font-bold shadow-lg shadow-pink-200 hover:scale-105 transition-all text-sm"
+                  className="button-accent mt-2 px-6 py-3 font-mono-ui text-[10px] uppercase tracking-[0.28em]"
                 >
-                  View Connections 💕
+                  View Connections
                 </Link>
               </motion.div>
             )}

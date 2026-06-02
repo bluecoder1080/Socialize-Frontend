@@ -1,31 +1,34 @@
-import React from 'react';
-import { X, Heart } from 'lucide-react';
+import React from "react";
+import { X, Heart } from "lucide-react";
 
 export function FeedActionButtons({ onLike, onPass }) {
   return (
     <div className="flex flex-col items-center gap-3">
-      <div className="flex items-center gap-8">
+      <div className="flex items-center gap-6">
         {/* Pass button */}
         <button
           onClick={onPass}
-          className="group w-16 h-16 bg-white rounded-full shadow-xl border border-gray-100 hover:scale-110 hover:border-red-200 transition-all duration-200 flex items-center justify-center"
+          className="group w-14 h-14 bg-[#1a1a17] rounded-[4px] border border-[#2a2a24] hover:border-[#ff4f1a] hover:text-[#ff4f1a] transition-all duration-200 flex items-center justify-center"
           aria-label="Pass"
         >
-          <X size={24} className="text-gray-300 group-hover:text-red-400 transition-colors" />
+          <X
+            size={20}
+            className="text-[#6b6b5e] group-hover:text-[#ff4f1a] transition-colors"
+          />
         </button>
 
         {/* Like button */}
         <button
           onClick={onLike}
-          className="w-20 h-20 bg-gradient-to-br from-pink-500 to-rose-500 rounded-full shadow-2xl shadow-pink-300 hover:scale-110 transition-all duration-200 flex items-center justify-center"
+          className="w-14 h-14 bg-[#e8ff3b] rounded-[4px] border border-[#e8ff3b] hover:scale-105 transition-all duration-200 flex items-center justify-center"
           aria-label="Like"
         >
-          <Heart size={30} className="fill-white text-white" />
+          <Heart size={20} className="text-[#0f0f0d]" />
         </button>
       </div>
 
-      <p className="text-gray-300 text-xs select-none">
-        💡 Drag left to pass · drag right to like
+      <p className="text-[#6b6b5e] text-[10px] uppercase tracking-[0.28em] select-none font-mono-ui">
+        drag left to pass · drag right to like
       </p>
     </div>
   );

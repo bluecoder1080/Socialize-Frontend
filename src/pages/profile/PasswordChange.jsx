@@ -10,9 +10,7 @@ export default function PasswordChange() {
 
   function handleChange(e) {
     const { name, value } = e.target;
-    setForm(function (prev) {
-      return { ...prev, [name]: value };
-    });
+    setForm((prev) => ({ ...prev, [name]: value }));
   }
 
   async function handleSubmit(e) {
@@ -20,13 +18,11 @@ export default function PasswordChange() {
     setLoading(true);
     try {
       await changePassword(form);
-      toast.success("Password changed successfully! 🔒");
+      toast.success("Password changed.");
       setForm({ currentPassword: "", newPassword: "" });
     } catch (err) {
       toast.error(
-        err && err.response && err.response.data && err.response.data.message
-          ? err.response.data.message
-          : "Failed to change password.",
+        err?.response?.data?.message || "Failed to change password.",
       );
     } finally {
       setLoading(false);
@@ -40,12 +36,12 @@ export default function PasswordChange() {
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.25 }}
     >
-      <div className="glass rounded-3xl p-8 shadow-2xl shadow-pink-100">
-        <h2 className="text-2xl font-black text-gray-800 mb-1">
-          Change Password 🔒
+      <div className="surface-soft p-8">
+        <h2 className="mb-2 font-mono-display text-2xl uppercase tracking-[-0.04em] text-[#f5f0e8]">
+          Change password
         </h2>
-        <p className="text-gray-400 text-sm mb-6">
-          Use a strong password: min 8 chars, 1 uppercase, 1 number, 1 symbol.
+        <p className="mb-6 text-sm text-[#6b6b5e]">
+          Use a strong password: min 8 chars, 1 uppercase, 1 number.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -69,13 +65,11 @@ export default function PasswordChange() {
             type="submit"
             disabled={loading}
             className={
-              "w-full py-3 rounded-xl font-bold text-white shadow-lg shadow-pink-200 transition-all " +
-              (loading
-                ? "bg-pink-300 cursor-not-allowed"
-                : "bg-gradient-to-r from-pink-500 to-rose-500 hover:scale-[1.02]")
+              "button-accent w-full py-3 font-mono-ui text-[10px] uppercase tracking-[0.28em] transition-all " +
+              (loading ? "opacity-70 cursor-not-allowed" : "")
             }
           >
-            {loading ? "Changing…" : "Change Password 🔒"}
+            {loading ? "changing" : "change password"}
           </button>
         </form>
       </div>

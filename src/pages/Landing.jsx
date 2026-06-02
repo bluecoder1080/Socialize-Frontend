@@ -1,196 +1,198 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Heart, ShieldCheck, Sparkles, Users } from "lucide-react";
-
-const HEARTS = ["💕", "❤️", "💗", "💖", "💝", "💘", "💞", "🌹"];
+import {
+  ArrowRight,
+  Code2,
+  MessageSquareCode,
+  Sparkles,
+  ShieldCheck,
+  Users,
+} from "lucide-react";
 
 const STATS = [
-  { num: "1.5K+", label: "Profiles Browsed Daily" },
-  { num: "320+", label: "Daily Conversations" },
-  { num: "98%", label: "Profiles Completed" },
+  { num: "1.5K+", label: "Developer profiles" },
+  { num: "320+", label: "Collab invites per day" },
+  { num: "98%", label: "Profiles completed" },
 ];
 
 const FEATURES = [
   {
     icon: Sparkles,
-    title: "Smart Matching",
-    desc: "Browse people who actually fit your interests instead of random noise.",
+    title: "Stack-aware matching",
+    desc: "Find people by language, stack, project type, and how they like to work.",
   },
   {
     icon: ShieldCheck,
-    title: "Real Profiles",
-    desc: "Profiles are reviewed so you can focus on real conversations, not obvious fakes.",
+    title: "Clear profiles",
+    desc: "See skills, availability, and collaboration intent before you reach out.",
   },
   {
     icon: Users,
-    title: "Instant Connect",
-    desc: "When there is interest, you can move from swipe to connection without extra friction.",
+    title: "Collab first",
+    desc: "If both people like the fit, move straight into chat, review, or a project plan.",
+  },
+];
+
+const FAQS = [
+  {
+    question: "If a person likes you too, can you collaborate?",
+    answer:
+      "Yes. Mutual interest opens a direct conversation so you can decide whether to pair, review code, or build something together.",
+  },
+  {
+    question: "Who is this for?",
+    answer:
+      "Developers, designers, founders, and anyone who wants to meet people around building projects instead of endless scrolling.",
+  },
+  {
+    question: "What can we build?",
+    answer:
+      "Side projects, hackathon ideas, open source work, portfolio apps, or a long-term product.",
+  },
+  {
+    question: "Do I need a complete profile?",
+    answer:
+      "A fuller profile helps, but you can start exploring early and fill in the details as you go.",
   },
 ];
 
 export default function Landing() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-rose-50 overflow-hidden">
-      {/* ── Hero ── */}
-      <section className="relative min-h-screen flex items-center justify-center px-4">
-        {/* Floating blobs */}
-        <div className="absolute top-20 left-10 w-72 h-72 bg-pink-300 rounded-full blur-3xl opacity-30 animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-rose-300 rounded-full blur-3xl opacity-30 animate-pulse" />
-        <div className="absolute top-1/2 left-1/4 w-48 h-48 bg-fuchsia-300 rounded-full blur-3xl opacity-20 animate-pulse" />
+    <div className="relative min-h-screen overflow-hidden bg-ui text-[#f5f0e8]">
+      <div className="pointer-events-none absolute inset-0 scanlines opacity-80" />
+      <div className="pointer-events-none absolute right-8 top-24 text-[clamp(12rem,24vw,30rem)] leading-none text-[#e8ff3b]/[0.04] ui-cursor-ghost">
+        &gt;_
+      </div>
 
-        {/* Floating heart emojis */}
-        {HEARTS.map(function (h, i) {
-          return (
-            <div
-              key={i}
-              className="absolute pointer-events-none select-none"
-              style={{
-                left: i * 12 + 4 + "%",
-                top: (i % 3 === 0 ? 15 : i % 3 === 1 ? 55 : 78) + "%",
-                animationDelay: i * 0.35 + "s",
-                animationDuration: 2 + i * 0.25 + "s",
-                opacity: 0.35 + (i % 3) * 0.15,
-                fontSize: 16 + (i % 4) * 8 + "px",
-              }}
+      <section className="relative mx-auto max-w-7xl px-6 pb-20 pt-20 lg:pt-28">
+        <div className="grid gap-12 lg:grid-cols-[1.4fr_.9fr] lg:items-end">
+          <div>
+            <motion.span
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="badge-square mb-6 text-[#e8ff3b]"
             >
-              {h}
+              [ developer network ]
+            </motion.span>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="max-w-5xl text-[clamp(3.5rem,10vw,8rem)] font-black uppercase leading-[0.86] tracking-[-0.08em] font-mono-display"
+            >
+              Find devs who ship.
+            </motion.h1>
+
+            <div className="mt-8 grid gap-8 lg:grid-cols-[1.2fr_.8fr] lg:items-start">
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.08 }}
+                className="max-w-xl text-lg leading-8 text-[#d8d3c6]"
+              >
+                Socialize helps developers find people they like, talk through
+                ideas, and collaborate on projects without the usual feed noise.
+              </motion.p>
+
+              <motion.pre
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.14 }}
+                className="surface-soft overflow-hidden p-5 text-[11px] leading-6 text-[#e8ff3b] font-mono-display"
+              >
+{`┌───────────────────────┐
+│  { stack }  { vibe }  │
+│  { ship }   { repeat }│
+│                       │
+│  pair -> review -> PR │
+└───────────────────────┘`}
+              </motion.pre>
             </div>
-          );
-        })}
 
-        {/* Main content */}
-        <div className="relative z-10 text-center max-w-3xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 bg-pink-100 text-pink-600 px-4 py-2 rounded-full text-sm font-semibold mb-6"
-          >
-            💕 Find Your Perfect Match
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-6xl md:text-7xl font-black mb-6 leading-tight text-gray-800"
-          >
-            <span className="text-gradient">Love</span> Starts Here
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl text-gray-500 mb-10 max-w-xl mx-auto"
-          >
-            Connect with real people, build meaningful relationships, and find
-            your perfect match with Socialize.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
-          >
-            <Link
-              to="/signup"
-              className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-pink-500 to-rose-500 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg shadow-pink-200 hover:shadow-xl hover:scale-105 transition-all"
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.18 }}
+              className="mt-10 flex flex-col gap-3 sm:flex-row"
             >
-              <Heart className="w-5 h-5 fill-current" />
-              Get Started Free
-            </Link>
-            <Link
-              to="/login"
-              className="inline-flex items-center justify-center bg-white text-gray-700 px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all border border-pink-100"
-            >
-              Sign In
-            </Link>
-          </motion.div>
+              <Link
+                to="/signup"
+                className="group inline-flex items-center justify-center gap-2 button-accent px-6 py-4 font-mono-ui text-sm uppercase tracking-[0.3em]"
+              >
+                Get Started
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link
+                to="/login"
+                className="inline-flex items-center justify-center gap-2 button-ghost px-6 py-4 font-mono-ui text-sm uppercase tracking-[0.3em]"
+              >
+                Sign In
+              </Link>
+            </motion.div>
+          </div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.96, y: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.38 }}
-            className="mx-auto mb-10 max-w-xl"
+            initial={{ opacity: 0, x: 18 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.12 }}
+            className="surface p-6 lg:p-7"
           >
-            <div className="glass rounded-3xl p-5 shadow-2xl shadow-pink-100 border-pink-100/70">
-              <div className="flex items-center justify-between gap-4">
-                <div className="text-left">
-                  <p className="text-xs uppercase tracking-[0.35em] text-pink-400 font-bold mb-2">
-                    This week
-                  </p>
-                  <h3 className="text-lg md:text-xl font-black text-gray-800 mb-1">
-                    A calmer way to meet people
-                  </h3>
-                  <p className="text-sm text-gray-500">
-                    Less scrolling, more meaningful connections.
-                  </p>
-                </div>
-                <motion.div
-                  animate={{ y: [0, -6, 0] }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="w-14 h-14 rounded-2xl bg-gradient-to-br from-pink-500 to-rose-500 flex items-center justify-center shadow-lg shadow-pink-200 shrink-0"
-                >
-                  <Heart className="w-7 h-7 text-white fill-current" />
-                </motion.div>
-              </div>
+            <div className="mb-6 flex items-center justify-between">
+              <span className="ui-kicker text-[#6b6b5e]">[ status ]</span>
+              <Code2 className="h-4 w-4 text-[#e8ff3b]" />
             </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex items-center justify-center gap-12 flex-wrap"
-          >
-            {STATS.map(function (s) {
-              return (
-                <div key={s.label} className="text-center">
-                  <div className="text-2xl font-black text-gradient">
-                    {s.num}
-                  </div>
-                  <div className="text-sm text-gray-400">{s.label}</div>
-                </div>
-              );
-            })}
+            <div className="space-y-4 text-sm leading-7 text-[#d8d3c6]">
+              <p>
+                If both people like the fit, you can move into collaboration
+                without extra friction.
+              </p>
+              <p>
+                The goal is not more scrolling. It is faster pairing, better
+                code reviews, and cleaner handoffs.
+              </p>
+              <p className="font-mono-display text-[11px] uppercase tracking-[0.32em] text-[#e8ff3b]">
+                [ mutual interest → conversation → collaboration ]
+              </p>
+            </div>
           </motion.div>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-12 grid gap-4 sm:grid-cols-3"
+        >
+          {STATS.map((stat) => (
+            <div key={stat.label} className="surface p-5">
+              <div className="font-mono-display text-2xl text-[#e8ff3b]">{stat.num}</div>
+              <div className="mt-2 text-sm text-[#6b6b5e]">{stat.label}</div>
+            </div>
+          ))}
+        </motion.div>
       </section>
 
-      {/* ── Features ── */}
-      <section className="py-24 px-4">
-        <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-8">
-          {FEATURES.map(function (f, i) {
-            const Icon = f.icon;
+      <section className="relative mx-auto max-w-7xl px-6 py-6 lg:py-10">
+        <div className="grid gap-4 md:grid-cols-3">
+          {FEATURES.map((feature, index) => {
+            const Icon = feature.icon;
             return (
               <motion.div
-                key={f.title}
-                initial={{ opacity: 0, y: 40 }}
+                key={feature.title}
+                initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.15 }}
-                className="glass rounded-3xl p-8 text-center"
+                transition={{ duration: 0.45, delay: index * 0.08 }}
+                className="surface p-6"
               >
-                <motion.div
-                  initial={{ scale: 0.9 }}
-                  whileInView={{ scale: 1 }}
-                  transition={{ duration: 0.4, delay: i * 0.12 }}
-                  className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-pink-100 to-rose-100 text-pink-500 flex items-center justify-center shadow-sm"
-                >
-                  <Icon className="w-7 h-7" />
-                </motion.div>
-                <h3 className="text-xl font-bold text-gray-800 mb-2">
-                  {f.title}
-                </h3>
-                <p className="text-gray-500 text-sm leading-relaxed">
-                  {f.desc}
+                <Icon className="h-4 w-4 text-[#e8ff3b]" />
+                <h2 className="mt-4 font-mono-display text-xl uppercase tracking-[-0.04em]">
+                  {feature.title}
+                </h2>
+                <p className="mt-3 text-sm leading-7 text-[#d8d3c6]">
+                  {feature.desc}
                 </p>
               </motion.div>
             );
@@ -198,49 +200,49 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* ── CTA Banner ── */}
-      <section className="py-16 px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="max-w-4xl mx-auto bg-gradient-to-r from-pink-500 to-rose-500 rounded-3xl p-12 text-center text-white shadow-2xl shadow-pink-200"
-        >
-          <h2 className="text-4xl font-black mb-4">Ready to Find Love? 💕</h2>
-          <p className="text-pink-100 mb-8 text-lg">
-            Join people who want a better kind of connection, not a louder feed.
-          </p>
-          <Link
-            to="/signup"
-            className="inline-flex items-center gap-2 bg-white text-pink-600 px-8 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-all shadow-lg"
-          >
-            <Heart className="w-5 h-5 fill-current" />
-            Start Your Journey
-          </Link>
-        </motion.div>
+      <section className="relative mx-auto max-w-5xl px-6 py-16">
+        <div className="mb-8">
+          <span className="ui-kicker text-[#6b6b5e]">[ faqs ]</span>
+          <h2 className="mt-3 font-mono-display text-3xl uppercase tracking-[-0.04em] md:text-4xl">
+            Questions builders usually ask
+          </h2>
+        </div>
+
+        <div className="space-y-4">
+          {FAQS.map((faq) => (
+            <details key={faq.question} className="surface p-5 group">
+              <summary className="cursor-pointer list-none font-mono-display text-sm uppercase tracking-[0.22em] text-[#f5f0e8]">
+                {faq.question}
+              </summary>
+              <p className="mt-4 max-w-3xl text-sm leading-7 text-[#d8d3c6]">
+                {faq.answer}
+              </p>
+            </details>
+          ))}
+        </div>
       </section>
 
-      {/* ── Footer ── */}
-      <footer className="border-t border-pink-100/80 bg-white/70 backdrop-blur-sm">
-        <div className="max-w-6xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500">
-          <p>
-            Socialize · built for real conversations, not endless scrolling.
-          </p>
-          <div className="flex items-center gap-5">
-            <Link
-              to="/signup"
-              className="hover:text-pink-500 transition-colors"
-            >
-              Sign up
-            </Link>
-            <Link to="/login" className="hover:text-pink-500 transition-colors">
-              Log in
-            </Link>
-            <span>© 2026 Socialize</span>
+      <section className="relative mx-auto max-w-7xl px-6 pb-20 pt-6">
+        <div className="surface flex flex-col gap-6 px-6 py-8 md:flex-row md:items-center md:justify-between">
+          <div>
+            <span className="ui-kicker text-[#6b6b5e]">[ call to action ]</span>
+            <h2 className="mt-3 font-mono-display text-3xl uppercase tracking-[-0.04em]">
+              If they like you too, collaborate.
+            </h2>
+            <p className="mt-3 max-w-2xl text-sm leading-7 text-[#d8d3c6]">
+              Match, talk, and build without the clutter. Keep the focus on the
+              project and the people who want to ship it.
+            </p>
           </div>
+          <Link
+            to="/signup"
+            className="inline-flex items-center justify-center gap-2 button-accent px-6 py-4 font-mono-ui text-sm uppercase tracking-[0.3em]"
+          >
+            Create account
+            <MessageSquareCode className="h-4 w-4" />
+          </Link>
         </div>
-      </footer>
+      </section>
     </div>
   );
 }

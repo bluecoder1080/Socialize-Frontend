@@ -1,40 +1,35 @@
-import React, { useState, forwardRef } from 'react';
-import { Eye, EyeOff } from 'lucide-react';
+import React, { useState, forwardRef } from "react";
 
-const BASE =
-  'w-full px-4 py-3 pr-12 bg-pink-50 border border-pink-200 rounded-xl text-gray-800 ' +
-  'placeholder-gray-400 text-sm transition-all focus:outline-none focus:ring-2 ' +
-  'focus:ring-pink-400 focus:border-transparent';
+const BASE = "w-full field-line pr-24 text-sm";
 
 export const PasswordInput = forwardRef(function PasswordInput(
-  { label, hint, className = '', ...props },
-  ref
+  { label, hint, className = "", ...props },
+  ref,
 ) {
   const [show, setShow] = useState(false);
-  const cls = BASE + (className ? ' ' + className : '');
+  const cls = BASE + (className ? " " + className : "");
 
   return (
     <div className="flex flex-col gap-1">
-      {label && (
-        <label className="text-sm font-medium text-gray-700">{label}</label>
-      )}
+      {label && <label className="kicker">{label}</label>}
       <div className="relative">
         <input
           ref={ref}
-          type={show ? 'text' : 'password'}
+          type={show ? "text" : "password"}
           className={cls}
           {...props}
         />
         <button
           type="button"
           onClick={() => setShow(!show)}
-          className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-pink-500 transition-colors focus:outline-none"
-          tabIndex={-1}
+          className="absolute right-0 bottom-3 text-[10px] uppercase tracking-[0.28em] text-[#e8ff3b]"
         >
-          {show ? <EyeOff size={18} /> : <Eye size={18} />}
+          [{show ? "hide" : "show"}]
         </button>
       </div>
-      {hint && <p className="text-xs text-gray-400">{hint}</p>}
+      {hint && (
+        <p className="text-[11px] font-mono-ui text-[#6b6b5e]">{hint}</p>
+      )}
     </div>
   );
 });

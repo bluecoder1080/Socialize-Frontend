@@ -51,21 +51,21 @@ export function FeedCard({ user, onLike, onPass }) {
       {/* LIKE stamp */}
       <motion.div
         style={{ opacity: likeOpacity }}
-        className="absolute top-6 left-6 z-20 border-4 border-emerald-400 text-emerald-400 text-xl font-black px-4 py-1.5 rounded-2xl -rotate-12 pointer-events-none"
+        className="absolute top-4 left-4 z-20 border border-[#e8ff3b] bg-[#0f0f0d]/90 text-[#e8ff3b] text-[10px] font-mono-ui px-3 py-1 rounded-[4px] -rotate-12 pointer-events-none"
       >
-        ♥ LIKE
+        LIKE
       </motion.div>
 
       {/* NOPE stamp */}
       <motion.div
         style={{ opacity: nopeOpacity }}
-        className="absolute top-6 right-6 z-20 border-4 border-red-400 text-red-400 text-xl font-black px-4 py-1.5 rounded-2xl rotate-12 pointer-events-none"
+        className="absolute top-4 right-4 z-20 border border-[#ff4f1a] bg-[#0f0f0d]/90 text-[#ff4f1a] text-[10px] font-mono-ui px-3 py-1 rounded-[4px] rotate-12 pointer-events-none"
       >
-        ✕ NOPE
+        NOPE
       </motion.div>
 
       {/* Card body */}
-      <div className="relative h-full rounded-3xl overflow-hidden shadow-2xl shadow-pink-200">
+      <div className="relative h-full rounded-[4px] overflow-hidden border border-[#2a2a24] bg-[#1a1a17]">
         <img
           src={resolveImageSrc(user.profilePhoto || user.photoUrl || FALLBACK)}
           alt={firstName}
@@ -76,22 +76,22 @@ export function FeedCard({ user, onLike, onPass }) {
         />
 
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f0d]/95 via-[#0f0f0d]/35 to-transparent" />
 
         {/* Info */}
-        <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-          <h2 className="text-3xl font-black leading-tight">
+        <div className="absolute bottom-0 left-0 right-0 p-6 text-[#f5f0e8]">
+          <h2 className="text-3xl font-black leading-tight font-mono-ui">
             {firstName} {lastName}
           </h2>
 
           {gender && (
-            <p className="text-sm text-gray-200 mt-0.5 mb-2">
+            <p className="text-xs text-[#bcb7ad] mt-0.5 mb-2 font-mono-ui uppercase tracking-[0.24em]">
               {getGenderEmoji(gender)} {gender}
             </p>
           )}
 
           {about && (
-            <p className="text-sm text-gray-200 mb-3 line-clamp-2 leading-relaxed">
+            <p className="text-sm text-[#f5f0e8]/90 mb-3 line-clamp-2 leading-relaxed">
               {about}
             </p>
           )}
@@ -101,7 +101,7 @@ export function FeedCard({ user, onLike, onPass }) {
               {skills.slice(0, 5).map((skill, i) => (
                 <span
                   key={i}
-                  className="px-3 py-1 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full text-xs font-medium"
+                  className="badge-square bg-[#1a1a17] text-[#e8ff3b]"
                 >
                   {skill}
                 </span>

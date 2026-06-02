@@ -1,25 +1,138 @@
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+@import "@fontsource/jetbrains-mono/700.css";
+@import "@fontsource/fraunces/400.css";
+@import "@fontsource/fraunces/600.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  :root {
+    color-scheme: dark;
+  }
+
   html {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Fraunces', serif;
     -webkit-font-smoothing: antialiased;
+    background: #0f0f0d;
+    color: #f5f0e8;
+  }
+
+  body {
+    background: #0f0f0d;
+    color: #f5f0e8;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .font-mono-ui {
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: -0.03em;
+  }
+
+  ::selection {
+    background: #e8ff3b;
+    color: #0f0f0d;
   }
 }
 
 @layer utilities {
-  .text-gradient {
-    background: linear-gradient(135deg, #ec4899, #be185d);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .scanlines {
+    background-image: repeating-linear-gradient(
+      0deg,
+      rgba(232, 255, 59, 0.03) 0,
+      rgba(232, 255, 59, 0.03) 1px,
+      transparent 1px,
+      transparent 6px
+    );
   }
-  .glass {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+
+  .surface {
+    background: #1a1a17;
+    border: 1px solid #2a2a24;
+    border-radius: 4px;
+  }
+
+  .surface-soft {
+    background: rgba(26, 26, 23, 0.88);
+    border: 1px solid #2a2a24;
+    border-radius: 4px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .field-line {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #2a2a24;
+    border-radius: 0;
+    color: #f5f0e8;
+    padding: 0.85rem 0;
+    transition: border-color 160ms ease;
+  }
+
+  .field-line::placeholder {
+    color: #6b6b5e;
+  }
+
+  .field-line:focus {
+    outline: none;
+    border-bottom-color: #e8ff3b;
+  }
+
+  .button-accent {
+    background: #e8ff3b;
+    color: #0f0f0d;
+    border: 1px solid #e8ff3b;
+    border-radius: 4px;
+    transition: transform 160ms ease, opacity 160ms ease, background 160ms ease;
+  }
+
+  .button-accent:hover {
+    transform: translateY(-1px);
+  }
+
+  .button-ghost {
+    background: transparent;
+    color: #f5f0e8;
+    border: 1px solid #2a2a24;
+    border-radius: 4px;
+    transition: border-color 160ms ease, color 160ms ease, background 160ms ease;
+  }
+
+  .button-ghost:hover {
+    border-color: #e8ff3b;
+    color: #e8ff3b;
+    background: rgba(232, 255, 59, 0.05);
+  }
+
+  .badge-square {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    border: 1px solid #2a2a24;
+    border-radius: 4px;
+    padding: 0.35rem 0.6rem;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+  }
+
+  .kicker {
+    font-size: 10px;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    color: #6b6b5e;
+  }
+
+  .mono-copy {
+    font-family: 'JetBrains Mono', monospace;
   }
 }

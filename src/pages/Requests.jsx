@@ -7,26 +7,28 @@ import { FullPageSpinner, EmptyState, Avatar } from "../components/ui";
 export default function Requests() {
   const { requests, loading, reviewRequest } = useRequests();
 
-  if (loading) return <FullPageSpinner text="Loading requests... 💌" />;
+  if (loading) return <FullPageSpinner text="loading requests..." />;
 
   const pendingCount = requests.length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-rose-50 pb-12">
-      <div className="max-w-lg mx-auto px-4 pt-8">
-        {/* Header */}
-        <div className="flex items-center gap-4 mb-8">
-          <div className="w-12 h-12 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full flex items-center justify-center shadow-lg shadow-pink-200 flex-shrink-0">
-            <Bell className="w-6 h-6 text-white" />
+    <div className="min-h-screen bg-ui pb-12 text-[#f5f0e8]">
+      <div className="mx-auto max-w-lg px-4 pt-8">
+        <div className="mb-8 flex items-center gap-4">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[4px] border border-ui bg-[#1a1a17]">
+            <Bell className="h-5 w-5 text-[#e8ff3b]" />
           </div>
           <div className="flex-1">
-            <h1 className="text-2xl font-black text-gray-800">
-              Connection Requests
+            <p className="ui-kicker text-[#6b6b5e]">[ requests ]</p>
+            <h1 className="mt-2 font-mono-display text-2xl uppercase tracking-[-0.04em]">
+              Connection requests
             </h1>
-            <p className="text-gray-400 text-sm">{pendingCount} pending</p>
+            <p className="mt-1 text-sm text-[#6b6b5e]">
+              {pendingCount} pending
+            </p>
           </div>
           {pendingCount > 0 && (
-            <span className="bg-gradient-to-r from-pink-500 to-rose-500 text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-md shadow-pink-200">
+            <span className="badge-square bg-[#e8ff3b] text-[#0f0f0d] border-[#e8ff3b]">
               {pendingCount}
             </span>
           )}
@@ -35,9 +37,9 @@ export default function Requests() {
         {/* Empty state */}
         {requests.length === 0 && (
           <EmptyState
-            emoji="💌"
+            emoji="[ ]"
             title="No pending requests"
-            description="When someone likes you, they'll appear here!"
+            description="When someone likes you, the request will appear here."
           />
         )}
 
@@ -59,7 +61,7 @@ export default function Requests() {
                     transition: { duration: 0.2 },
                   }}
                   transition={{ duration: 0.3 }}
-                  className="glass rounded-2xl p-4 flex items-center gap-4"
+                  className="surface flex items-center gap-4 p-4"
                 >
                   <Avatar
                     src={sender.photoUrl || sender.profilePhoto}
@@ -68,16 +70,16 @@ export default function Requests() {
                   />
 
                   <div className="flex-1 min-w-0">
-                    <p className="font-bold text-gray-800 text-sm truncate">
+                    <p className="truncate text-sm font-bold text-[#f5f0e8]">
                       {sender.FirstName} {sender.LastName}
                     </p>
                     {sender.Gender && (
-                      <span className="inline-block text-xs text-pink-500 capitalize bg-pink-50 px-2 py-0.5 rounded-full mt-0.5">
+                      <span className="badge-square mt-1 bg-[#1a1a17] text-[#e8ff3b]">
                         {sender.Gender}
                       </span>
                     )}
                     {sender.About && (
-                      <p className="text-xs text-gray-400 mt-1 truncate">
+                      <p className="mt-1 truncate text-xs text-[#6b6b5e]">
                         {sender.About}
                       </p>
                     )}
@@ -89,7 +91,7 @@ export default function Requests() {
                       onClick={function () {
                         reviewRequest(req._id, "rejected");
                       }}
-                      className="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center text-gray-400 hover:text-rose-500 hover:shadow-lg transition-all"
+                      className="flex h-10 w-10 items-center justify-center rounded-[4px] border border-ui bg-[#1a1a17] text-[#6b6b5e] transition-colors hover:text-[#ff4f1a]"
                       title="Decline"
                     >
                       <X className="w-4 h-4" />
@@ -99,10 +101,10 @@ export default function Requests() {
                       onClick={function () {
                         reviewRequest(req._id, "accepted");
                       }}
-                      className="w-10 h-10 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 shadow-md shadow-pink-200 flex items-center justify-center text-white hover:shadow-lg hover:scale-110 transition-all"
+                      className="flex h-10 w-10 items-center justify-center rounded-[4px] border border-[#e8ff3b] bg-[#e8ff3b] text-[#0f0f0d] transition-transform hover:scale-105"
                       title="Accept"
                     >
-                      <Heart className="w-4 h-4 fill-current" />
+                      <Heart className="w-4 h-4" />
                     </button>
                   </div>
                 </motion.div>

@@ -21,9 +21,7 @@ export default function ProfileEdit({ onCancel, onSaved }) {
 
   function handleChange(e) {
     const { name, value } = e.target;
-    setForm(function (prev) {
-      return { ...prev, [name]: value };
-    });
+    setForm((prev) => ({ ...prev, [name]: value }));
   }
 
   async function handleSubmit(e) {
@@ -37,20 +35,16 @@ export default function ProfileEdit({ onCancel, onSaved }) {
         photoUrl: form.photoUrl,
         About: form.About,
         Skills: form.Skills.split(",")
-          .map(function (s) {
-            return s.trim();
-          })
+          .map((skill) => skill.trim())
           .filter(Boolean),
       };
       const res = await editProfile(payload);
       updateUser(res.data.data);
-      toast.success("Profile updated! 💕");
+      toast.success("Profile updated.");
       onSaved();
     } catch (err) {
       toast.error(
-        err && err.response && err.response.data && err.response.data.message
-          ? err.response.data.message
-          : "Failed to update profile.",
+        err?.response?.data?.message || "Failed to update profile.",
       );
     } finally {
       setLoading(false);
@@ -64,13 +58,15 @@ export default function ProfileEdit({ onCancel, onSaved }) {
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.25 }}
     >
-      <div className="glass rounded-3xl p-8 shadow-2xl shadow-pink-100">
-        <h2 className="text-2xl font-black text-gray-800 mb-6">
-          Edit Profile ✏️
+      <div className="surface-soft p-8">
+        <h2 className="mb-3 font-mono-display text-2xl uppercase tracking-[-0.04em] text-[#f5f0e8]">
+          Edit profile
         </h2>
+        <p className="mb-6 text-sm text-[#6b6b5e]">
+          Adjust the details people see before they message you.
+        </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Name row */}
           <div className="grid grid-cols-2 gap-3">
             <Input
               label="First Name"
@@ -89,7 +85,6 @@ export default function ProfileEdit({ onCancel, onSaved }) {
             />
           </div>
 
-          {/* Gender */}
           <Select
             label="Gender"
             name="Gender"
@@ -102,7 +97,6 @@ export default function ProfileEdit({ onCancel, onSaved }) {
             <option value="others">Others</option>
           </Select>
 
-          {/* Photo URL + preview */}
           <div>
             <Input
               label="Photo URL"
@@ -115,12 +109,11 @@ export default function ProfileEdit({ onCancel, onSaved }) {
             {form.photoUrl && (
               <div className="mt-2 flex items-center gap-2">
                 <Avatar src={form.photoUrl} alt="Preview" size="sm" />
-                <span className="text-xs text-gray-400">Preview</span>
+                <span className="text-xs text-[#6b6b5e]">Preview</span>
               </div>
             )}
           </div>
 
-          {/* About */}
           <TextArea
             label="About"
             name="About"
@@ -130,7 +123,6 @@ export default function ProfileEdit({ onCancel, onSaved }) {
             placeholder="Tell people a little about yourself..."
           />
 
-          {/* Skills */}
           <div>
             <Input
               label="Skills"
@@ -139,27 +131,17 @@ export default function ProfileEdit({ onCancel, onSaved }) {
               onChange={handleChange}
               placeholder="React, Node.js, Design..."
             />
-            <p className="text-xs text-gray-400 mt-1.5 ml-1">
+            <p className="mt-1.5 ml-1 font-mono-ui text-[11px] text-[#6b6b5e]">
               Separate with commas
             </p>
           </div>
 
-          {/* Actions */}
           <div className="flex gap-3 pt-2">
-            <Button
-              type="button"
-              variant="ghost"
-              onClick={onCancel}
-              className="flex-1"
-            >
+            <Button type="button" variant="ghost" onClick={onCancel} className="flex-1">
               Cancel
             </Button>
-            <Button
-              type="submit"
-              loading={loading}
-              className="flex-1 bg-gradient-to-r from-pink-500 to-rose-500 text-white rounded-xl font-bold shadow-lg shadow-pink-200"
-            >
-              {loading ? "Saving…" : "Save Changes"}
+            <Button type="submit" loading={loading} className="flex-1">
+              {loading ? "Saving..." : "Save changes"}
             </Button>
           </div>
         </form>
